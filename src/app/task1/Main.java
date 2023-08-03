@@ -14,8 +14,11 @@ public class Main {
         String[] names = getData();
         title = "Initial names list:";
         getOutput(title, names);
+
         title = "Names started with letter 'O':";
-        getOutput(title, makeStream(names).filter(name -> name.startsWith("O")).toArray(String[]::new));
+        System.out.println('\n' + title);
+        cnt.set(0);
+        makeStream(names).filter(name -> name.startsWith("O")).forEach(name -> System.out.println(cnt.incrementAndGet() + ") " + name));
     }
 
     private static String[] getData() {

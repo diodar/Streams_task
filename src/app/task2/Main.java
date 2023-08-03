@@ -2,7 +2,6 @@ package app.task2;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 public class Main {
 
@@ -14,8 +13,11 @@ public class Main {
         Map<String, Double> products = getData();
         title = "Initial products list:";
         getOutput(title, products);
+
         title = "Products costs <= 2.0:";
-        getOutput(title, products.entrySet().stream().filter(price -> price.getValue() <= 2.0).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
+        System.out.println('\n' + title);
+        cnt.set(0);
+        products.entrySet().stream().filter(price -> price.getValue() <= 2.0).forEach(product -> System.out.println(cnt.incrementAndGet() + ") " + product.getKey() + " = " + product.getValue() + " $"));
     }
 
     private static Map<String, Double> getData() {
